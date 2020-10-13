@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="pt-5"> 내 정보 </h3>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="https://media.istockphoto.com/vectors/human-silhouette-with-question-mark-on-his-head-anonymous-user-vector-vector-id1125341219?k=6&m=1125341219&s=170667a&w=0&h=jD4k67iMmuvUBBh0HRB7Oqd2aIkkfNo0i3gRkDES7C4=">
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>아이디</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>닉네임</th>
+                    <td>{{ user.nickname }}</td>
+                </tr>
+                <tr>
+                    <th>권한</th>
+                    <td>{{ user.privilege }}</td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td>{{ user.address }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+    <div class="alert alert-primary">
+        <h5 class='d-inline-block'>회원님의 상품</h5> <span class="text-muted">{{ user.products|length }}개가 있습니다.</span>
+    </div>
+    <div class="card-group">
+    {% for product in user.products[:8] %}
+    <div class="col-md-3">
+        <div class="card">
+            <img src="{{ product.img }}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h6 class="card-title">{{ product.name[:10] }}</h6>
+            <p class="card-text">{{ product.price }}원</p>
+            <p class="card-text"><small class="text-muted">{{ product.description[:25] }}...</small></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    <hr>
+    <div class="alert alert-success">
+        <h5 class='d-inline-block'>회원님의 댓글</h5> <span class="text-muted">{{ user.comments|length }}개가 있습니다.</span>
+    </div>
+    {% if user.comments %}
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">상품ID</th>
+            <th scope="col">글 내용</th>
+            <th scope="col">남긴시간</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in user.comments[:8] %}
+        <tr>
+            <th scope="row">{{ comment.id }}</th>
+            <td>{{ comment.productId}}</td>
+            <td>{{ comment.content }} </td>
+            <td>{{ comment.at }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <hr>
+    <div class="alert alert-warning">
+        <h5 class='d-inline-block'>회원님의 거래</h5> <span class="text-muted">{{ user.transactions|length }}개가 있습니다.</span>
+    </div>
+    {% if user.transactions %}
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">유저ID</th>
+            <th scope="col">상품ID</th>
+            <th scope="col">수량</th>
+            <th scope="col">승인여부</th>
+            <th scope="col">생성시간</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transaction in user.transactions[:8] %}
+        <tr>
+            <th scope="row">{{ transaction.id }}</th>
+            <td>{{ transaction.userId}}</td>
+            <td>{{ transaction.productId }} </td>
+            <td>{{ transaction.quantity }}</td>
+            <td>{{ transaction.approval }}</td>
+            <td>{{ transaction.at }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %} 

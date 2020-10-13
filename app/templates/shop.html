@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3 class="mt-5"> 상품 정보 </h1>
+<h6> 상품이 {{ products|length }} 개가 있습니다.</h6>
+<hr>
+<div class="row">
+<div class="col-md-12">
+    <div class="card-group">
+{% for product in products %}
+    <div class="col-md-3">
+        <div class="card">
+            <img src="{{ product.img }}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h6 class="card-title">{{ product.name[:10] }}</h6>
+            <p class="card-text">{{ product.price }}원</p>
+            <p class="card-text"><small class="text-muted">{{ product.description[:25] }}...</small></p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
