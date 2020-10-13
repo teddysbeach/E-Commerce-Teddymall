@@ -2,10 +2,8 @@
 
 E-Commerce Teddymall is MVC model for E-commerce sites. 
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/05a2ecc4-5ba8-434a-9a80-e22057c39efe/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/05a2ecc4-5ba8-434a-9a80-e22057c39efe/Untitled.png)
 
 ## Ingredients.
-
 1. Bootstrap 4 + JQuery + FontAwesome
 2. Python3 + Flask + SQLAlchemy
 
